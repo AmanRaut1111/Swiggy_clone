@@ -1,4 +1,4 @@
-Parcel
+# Parcel
 
 Dev Build
 Local Server
@@ -17,3 +17,9 @@ Error Handling
 HTTPs
 Tree Shaking - remove unused code
 Different dev and prod bundles
+
+# React hooks
+
+its a normal utility functions
+1- useStste() - it maintain the state of components
+2- useEffect()

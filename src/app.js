@@ -4,8 +4,11 @@ import Header from "./components/Header";
 import Body from "./components/Body";
 
 const Applayout = () => {
+
     return (
+
         <div className="App">
+
             <Header />
             <Body />
         </div>
