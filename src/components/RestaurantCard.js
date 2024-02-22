@@ -8,19 +8,16 @@ const RestaurantCard = (props) => {
             <img
                 className="res-logo"
                 alt="res-logo"
-                src={
-                    CDN_URL +
-                    resData.cloudinaryImageId
-                }
+                src={CDN_URL + resData.info.cloudinaryImageId}
             />
-            <h3>{resData.name}</h3>
-            <h4>{resData.cuisines.join(" ,")}</h4>
-            <h4> {resData.deliveryTime} </h4>
-            <h4>{resData.avgRating}</h4>
+            <h3>{resData.info.name}</h3>
+            <h4>{resData.info.cuisines.join(" ,")}</h4>
+            <h4> {resData.info.deliveryTime} </h4>
+            <h4>{resData.info.avgRating}</h4>
 
-            <h4> {resData.costForTwo} </h4>
+            <h4> {resData.info.costForTwo} </h4>
         </div>
     );
 };
 
-export default RestaurantCard
+export default RestaurantCard;
