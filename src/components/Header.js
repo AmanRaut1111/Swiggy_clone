@@ -1,31 +1,39 @@
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constants.js";
 
-const Header = () => {
-    console.log("header is render");
-    const [btnReact, setbtnReact] = useState('Login')
+import { Link } from "react-router-dom";
 
+const Header = () => {
+    const [btnReact, setbtnReact] = useState("Login");
+
+
+    useEffect(() => {
+
+    }, [])
 
     return (
         <div className="header">
             <div className="logo-container">
-                <img
-                    className="logo"
-                    src={LOGO_URL}
-                />
+                <img className="logo" src={LOGO_URL} />
             </div>
 
             <div className="nav-items">
                 <ul>
-                    <li>Home</li>
-                    <li>About us</li>
-                    <li>contact us</li>
+                    <li><Link to="/" className="Link">Home</Link></li>
+                    <li> <Link className="Link" to='/about'> About us</Link></li>
+                    <li><Link className="Link" to="/contact" >contact us</Link></li>
                     <li>cart</li>
-                    <button className="login-btn" onClick={() => {
-                        btnReact === "Login" ? setbtnReact("Logout") : setbtnReact("Login")
-                        console.log(btnReact);
-                    }}>{btnReact}</button>
+                    <button
+                        className="login-btn"
+                        onClick={() => {
+                            btnReact === "Login"
+                                ? setbtnReact("Logout")
+                                : setbtnReact("Login");
+                            console.log(btnReact);
+                        }}
+                    >
+                        {btnReact}
+                    </button>
                 </ul>
             </div>
         </div>
