@@ -2,16 +2,17 @@ import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 const Body = () => {
     const [listOfRestaurant, setListOfRestaurant] = useState([]);
     const [filterdRestaurant, setFilteredRestaurant] = useState([]);
     const [searchtext, setSearchText] = useState("");
 
-    console.log("Body is Render");
+
 
     useEffect(() => {
         fetchData();
-        console.log("useEffect is called");
+
     }, []);
 
     const fetchData = async () => {
@@ -39,26 +40,28 @@ const Body = () => {
         <Shimmer />
     ) : (
         <div className="body">
-            <div className="search">
-                <input
-                    type="text"
-                    className="search-box"
-                    value={searchtext}
-                    onChange={(e) => {
-                        setSearchText(e.target.value);
-                    }}
-                />
-                <button
-                    onClick={() => {
-                        console.log(searchtext);
-                        const filterRestaurant = listOfRestaurant.filter((res) => {
-                            return res.info.name.includes(searchtext);
-                        });
-                        setFilteredRestaurant(filterRestaurant);
-                    }}
-                >
-                    search
-                </button>
+            <div className="search-container">
+                <div className="search">
+                    <input
+                        type="text"
+                        className="search-box"
+                        value={searchtext}
+                        onChange={(e) => {
+                            setSearchText(e.target.value);
+                        }}
+                    />
+                    <button className="search-btn"
+                        onClick={() => {
+                            console.log(searchtext);
+                            const filterRestaurant = listOfRestaurant.filter((res) => {
+                                return res.info.name.includes(searchtext);
+                            });
+                            setFilteredRestaurant(filterRestaurant);
+                        }}
+                    >
+                        search
+                    </button>
+                </div>
             </div>
             <div className="filter">
                 <button
@@ -79,7 +82,7 @@ const Body = () => {
             <div className="res-container">
                 {filterdRestaurant.map((restaurant) => {
                     return (
-                        <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+                        <Link className="resLink" key={restaurant.info.id} to={"/restaurant/" + restaurant.info.id}>  <RestaurantCard resData={restaurant} /></Link>
                     );
                 })}
             </div>
