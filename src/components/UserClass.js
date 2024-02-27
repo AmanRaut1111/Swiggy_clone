@@ -6,15 +6,11 @@ class UserClass extends React.Component {
 
         this.state = {
             userInfo: {
-
                 avatar_url: "djvigjoieprgjoiergjoierjgoiergeregrgeger",
                 name: "dummy",
                 location: "default",
-
-
             },
         };
-
 
         console.log("constructor is called");
         console.log(this.state.userInfo);
@@ -26,8 +22,6 @@ class UserClass extends React.Component {
 
         const data = await result.json();
 
-
-
         this.setState({ userInfo: data });
 
         console.log(this.state.userInfo);
@@ -38,7 +32,6 @@ class UserClass extends React.Component {
     }
 
     render() {
-
         console.log(this.props.name + " child render is called");
 
         const { name, address, contact } = this.props;
