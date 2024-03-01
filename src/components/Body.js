@@ -8,8 +8,7 @@ const Body = () => {
     const [listOfRestaurant, setListOfRestaurant] = useState([]);
     const [filterdRestaurant, setFilteredRestaurant] = useState([]);
     const [searchtext, setSearchText] = useState("");
-    const ResCardPromotted = withPromottedLabel(RestaurantCard)
-
+    const ResCardPromotted = withPromottedLabel(RestaurantCard);
 
     console.log("body render", listOfRestaurant);
 
@@ -101,10 +100,11 @@ const Body = () => {
                             to={"/restaurant/" + restaurant.info.id}
                         >
                             {" "}
-                            {
-                                restaurant.info.isOpen ? <ResCardPromotted resData={restaurant} /> : <RestaurantCard resData={restaurant} />
-                            }
-
+                            {restaurant.info.isOpen ? (
+                                <ResCardPromotted resData={restaurant} />
+                            ) : (
+                                <RestaurantCard resData={restaurant} />
+                            )}
                         </Link>
                     );
                 })}
@@ -112,8 +112,5 @@ const Body = () => {
         </div>
     );
 };
-
-
-
 
 export default Body;
