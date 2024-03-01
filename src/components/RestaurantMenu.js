@@ -3,49 +3,66 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { MENU_API } from "../utils/constants";
-
+import Shimmer from "./Shimmer";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
-    const [resInfo, setResInfo] = useState();
+    // const [resInfo, setResInfo] = useState(null);
 
-    const { resId } = useParams()
+    // useEffect(() => {
+    //     console.log("api is called");
+    //     fetchMenu();
+    // }, []);
 
+    // const fetchMenu = async () => {
+    //     const data = await fetch(MENU_API + resId);
+    //     const menuData = await data.json();
 
-    useEffect(() => {
-        console.log("api is called");
-        fetchMenu();
-    }, []);
+    //     setResInfo(menuData.data);
+    // };
 
-    const fetchMenu = async () => {
-        const data = await fetch(MENU_API + resId);
-        const menuData = await data.json();
+    const [showIndex, setShowIndex] = useState(false);
 
-        setResInfo(menuData.data);
-    };
+    const { resId } = useParams();
+    const resInfo = useRestaurantMenu(resId);
 
-    const { name, costForTwo, cuisines, price } =
-        resInfo?.cards[2]?.card?.card?.info ?? {};
+    if (resInfo === null) return <Shimmer />;
 
-    const { itemCards } = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card ?? {};
+    const { name, cuisines, costForTwoMessage } =
+        resInfo?.cards[0]?.card?.card?.info ?? {};
 
-    console.log(itemCards);
+    const { itemCards } =
+        resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
+            ?.card ?? {};
 
+    const category =
+        resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+            (e) =>
+                e.card?.card?.["@type"] ===
+                "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+        );
 
-
-
-
+    console.log("category", category);
 
     return (
-        <div className=" Menu">
+        <div className=" menu">
             <h2>{name}</h2>
-            <h2>{cuisines ? cuisines.join(' ,') : cuisines}  </h2>
-            <h2>{costForTwo}</h2>
 
-            <ul>
-                {itemCards && Array.isArray(itemCards) && itemCards.map((item) => {
-                    return <li key={item.card.info.id}> {item.card.info.name} -{item.card.info.price}</li>;
-                })}
-            </ul>
+            <h3>
+                {cuisines ? cuisines.join(" ,") : cuisines} - {costForTwoMessage}
+            </h3>
+
+            {category.map((category, index) => {
+                return (
+                    <RestaurantCategory
+                        showitems={false}
+                        key={category?.card?.card?.itemCards?.card?.info?.id}
+                        data={category?.card?.card}
+                    // setShowIndex={() => setShowIndex(index)}
+                    />
+                );
+            })}
         </div>
     );
 };
