@@ -1,18 +1,20 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromottedLabel } from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 const Body = () => {
     const [listOfRestaurant, setListOfRestaurant] = useState([]);
     const [filterdRestaurant, setFilteredRestaurant] = useState([]);
     const [searchtext, setSearchText] = useState("");
+    const ResCardPromotted = withPromottedLabel(RestaurantCard)
 
 
+    console.log("body render", listOfRestaurant);
 
     useEffect(() => {
         fetchData();
-
     }, []);
 
     const fetchData = async () => {
@@ -36,6 +38,16 @@ const Body = () => {
     //     return <Shimmer />
     // }
 
+    const onlineStatus = useOnlineStatus();
+
+    if (onlineStatus === false)
+        return (
+            <h1>
+                Oppps.. Looks like you are offline... Please check your internet
+                connection
+            </h1>
+        );
+
     return listOfRestaurant.length === 0 ? (
         <Shimmer />
     ) : (
@@ -50,7 +62,8 @@ const Body = () => {
                             setSearchText(e.target.value);
                         }}
                     />
-                    <button className="search-btn"
+                    <button
+                        className="search-btn"
                         onClick={() => {
                             console.log(searchtext);
                             const filterRestaurant = listOfRestaurant.filter((res) => {
@@ -68,11 +81,11 @@ const Body = () => {
                     className="filter-btn"
                     onClick={() => {
                         //filter Logic
-                        const filterList = listOfRestaurant.filter((res) => {
+                        const filterList = filterdRestaurant.filter((res) => {
                             return res.info.avgRating > 4.4;
                         });
                         console.log(filterList);
-                        setListOfRestaurant(filterList);
+                        setFilteredRestaurant(filterList);
                     }}
                 >
                     {" "}
@@ -82,12 +95,25 @@ const Body = () => {
             <div className="res-container">
                 {filterdRestaurant.map((restaurant) => {
                     return (
-                        <Link className="resLink" key={restaurant.info.id} to={"/restaurant/" + restaurant.info.id}>  <RestaurantCard resData={restaurant} /></Link>
+                        <Link
+                            className="resLink"
+                            key={restaurant.info.id}
+                            to={"/restaurant/" + restaurant.info.id}
+                        >
+                            {" "}
+                            {
+                                restaurant.info.isOpen ? <ResCardPromotted resData={restaurant} /> : <RestaurantCard resData={restaurant} />
+                            }
+
+                        </Link>
                     );
                 })}
             </div>
         </div>
     );
 };
+
+
+
 
 export default Body;
