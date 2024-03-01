@@ -8,13 +8,20 @@ class About extends Component {
         super(props)
 
 
-        console.log(" parent constructor is called");
+
     }
 
 
     componentDidMount() {
-        console.log("parent componentDidMount called");
+    };
+
+
+    componentWillUnmount() {
+
     }
+
+
+
     render() {
 
         console.log("parent render is called");
@@ -31,6 +38,7 @@ class About extends Component {
                     address={"pune"}
                     contact={"8180090786"}
                 />
+
             </div>
         );
     }
