@@ -3,8 +3,6 @@ import { CDN_URL } from "../utils/constants.js";
 const RestaurantCard = (props) => {
     const { resData } = props;
 
-
-
     return (
         <div className="res-card">
             <img
@@ -24,21 +22,17 @@ const RestaurantCard = (props) => {
     );
 };
 
-
-
 //higher order component
-
 
 export const withPromottedLabel = (RestaurantCard) => {
     return (props) => {
         return (
             <div>
-                <label className="label">Promotted</label>
+                <label className="label">Promoted</label>
                 <RestaurantCard {...props}></RestaurantCard>
             </div>
-        )
-    }
-}
-
+        );
+    };
+};
 
 export default RestaurantCard;
