@@ -37,7 +37,6 @@
 
 .Link:hover {
     color: #30b886;
-
 }
 
 /* 
@@ -177,7 +176,6 @@
     cursor: pointer;
     color: white;
     border-radius: 9%;
-
 }
 
 .search-btn:hover {
@@ -208,7 +206,6 @@
 .Link {
     text-decoration: none;
 }
-
 
 /* about page styling */
 
@@ -262,7 +259,6 @@ h3 {
     padding: 5px;
     background-color: #fbfbfb;
 
-
     box-shadow: 0px 0px 20px #bdc3c7;
 
     width: 50%;
@@ -274,8 +270,6 @@ h3 {
     justify-content: space-between;
     cursor: pointer;
     transition-duration: 0.9s;
-
-
 }
 
 .acc {
@@ -289,11 +283,9 @@ h3 {
     text-align: left;
 }
 
-
 .acc-box>p {
     font-weight: lighter;
 }
-
 
 .acc-box>div {
     font-weight: bold;
@@ -305,13 +297,10 @@ h3 {
     height: 110px;
 }
 
-
 .acc-by {
     display: flex;
     justify-content: space-between;
-
 }
-
 
 .ac-btn {
     display: inline-block;
@@ -328,15 +317,11 @@ h3 {
     box-shadow: 0px 0px 20px #bdc3c7;
 }
 
-
 .acc-conatiner>h3 {
     padding-left: 20px;
-
 }
 
-
 /* cart styling */
-
 
 /* 
 .cart-container>h2 {
@@ -374,14 +359,10 @@ h3 {
 
 } */
 
-
 .button-container {
-
     margin: 30px;
     display: flex;
     justify-content: center;
-
-
 }
 
 .cartItem-container>h2 {
