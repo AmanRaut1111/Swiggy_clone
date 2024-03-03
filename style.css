@@ -49,7 +49,7 @@
 .res-card {
     padding: 5px;
     width: 200px;
-    height: 350px;
+    height: 370px;
     margin: 30px;
     text-align: center;
     background-color: #f0f0f0;
@@ -398,4 +398,14 @@ h3 {
 .text {
     display: flex;
     justify-content: center;
+}
+
+
+/* .res-card>h3 {
+    margin: 12px;
+} */
+
+
+.fa-shopping-cart {
+    color: orange;
 }

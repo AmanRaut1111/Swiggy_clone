@@ -44,11 +44,11 @@ const Header = () => {
                     </li>
                     <li>
                         <Link className="Link" to="/contact">
-                            contact us
+                            Contact us
                         </Link>
                     </li>
 
-                    <li> <Link to={"/cart"} className="Link">cart {cartItem.length}</Link></li>
+                    <li> <Link to={"/cart"} className="Link">Cart <i className="fa fa-shopping-cart"> </i> {cartItem.length}</Link></li>
 
                     <button
                         className="login-btn"
