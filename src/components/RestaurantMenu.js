@@ -56,8 +56,8 @@ const RestaurantMenu = () => {
             {category.map((category, index) => {
                 return (
                     <RestaurantCategory
+                        key={category?.card?.card?.title}
                         showitems={false}
-                        key={category?.card?.card?.itemCards?.card?.info?.id}
                         data={category?.card?.card}
                     // setShowIndex={() => setShowIndex(index)}
                     />

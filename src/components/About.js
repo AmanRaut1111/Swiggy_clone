@@ -1,33 +1,30 @@
-import User from './User'
+import User from "./User";
 
 import UserClass from "./UserClass";
 import { Component } from "react";
+import UserContext from "../utils/UserContext";
 
 class About extends Component {
     constructor(props) {
-        super(props)
-
-
-
+        super(props);
     }
 
+    componentDidMount() { }
 
-    componentDidMount() {
-    };
-
-
-    componentWillUnmount() {
-
-    }
-
-
+    componentWillUnmount() { }
 
     render() {
 
-        console.log("parent render is called");
         return (
             <div>
+
                 <h1> This is About Page By Namste React</h1>
+
+                <div>
+                    <UserContext.Consumer>
+                        {(data) => data.loggedInUser}
+                    </UserContext.Consumer>
+                </div>
                 {/* <User
                     name={"Aman Raut  ( functional)"}
                     address={"gokak"}
@@ -36,15 +33,14 @@ class About extends Component {
                 <UserClass
                     name={"Aman Raut (class)"}
                     address={"pune"}
+
+
                     contact={"8180090786"}
                 />
-
             </div>
         );
     }
 }
-
-
 
 // const About = () => {
 //   return (
